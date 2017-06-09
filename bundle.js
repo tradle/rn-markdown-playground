@@ -22350,7 +22350,24 @@
 	var _components=__webpack_require__(262);
 	var _rnMarkdown=__webpack_require__(302);var _rnMarkdown2=_interopRequireDefault(_rnMarkdown);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
 
-	var Markdown=(0,_rnMarkdown2.default)();var
+	var Markdown=(0,_rnMarkdown2.default)();
+	var defaultInput='';
+	var defaultMarkdownStyles={
+	heading1:{
+	fontSize:24,
+	color:'purple'},
+
+	link:{
+	color:'darkblue'},
+
+	mail_to:{
+	color:'orange'},
+
+	text:{
+	color:'#757575',
+	fontStyle:'italic'}};var
+
+
 
 	App=function(_Component){_inherits(App,_Component);
 	function App(){_classCallCheck(this,App);var _this=_possibleConstructorReturn(this,(App.__proto__||Object.getPrototypeOf(App)).call(this));
@@ -22358,15 +22375,17 @@
 	_this.handleChange=_this.handleChange.bind(_this);
 	_this.changeStyle=_this.changeStyle.bind(_this);
 	_this.state={
-	input:'',
+	input:defaultInput,
 	markdownStyles:defaultMarkdownStyles};return _this;
 
 	}_createClass(App,[{key:'changeStyle',value:function changeStyle(
 
 	event){
+	try{
 	this.setState({
-	style:JSON.parse(event.target.value)});
+	markdownStyles:JSON.parse(event.target.value)});
 
+	}catch(err){}
 	}},{key:'handleChange',value:function handleChange(
 
 	event){
@@ -22399,23 +22418,6 @@
 	return JSON.stringify(obj,null,2);
 	}
 
-	var defaultMarkdownStyles={
-	heading1:{
-	fontSize:24,
-	color:'purple'},
-
-	link:{
-	color:'darkblue'},
-
-	mail_to:{
-	color:'orange'},
-
-	text:{
-	color:'#757575',
-	fontStyle:'italic'}};
-
-
-
 	var styles={
 	container:{
 	flex:1,
@@ -22436,7 +22438,7 @@
 
 	styleInput:{
 	marginRight:20,
-	width:300}};
+	width:200}};
 
 /***/ },
 /* 264 */
