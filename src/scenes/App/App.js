@@ -16,7 +16,7 @@ import { Touchable } from '../../components';
 import createMarkdownRenderer from 'rn-markdown'
 
 const Markdown = createMarkdownRenderer()
-const defaultInput = ''
+const defaultInput = require('./silly-input')
 const defaultMarkdownStyles = {
   heading1: {
     fontSize: 24,
@@ -29,8 +29,7 @@ const defaultMarkdownStyles = {
     color: 'orange',
   },
   text: {
-    color: '#757575',
-    fontStyle: 'italic'
+    color: '#757575'
   }
 }
 
@@ -67,7 +66,7 @@ export default class App extends Component {
           value={input}
           style={styles.input}
           onChange={this.handleChange} />
-        <Markdown markdownStyles={markdownStyles}>
+        <Markdown style={styles.output} markdownStyles={markdownStyles}>
           {input}
         </Markdown>
         <textarea
@@ -99,10 +98,9 @@ const styles = {
   },
   output: {
     flex: 1,
-    marginRight: 20
+    whiteSpace: 'pre'
   },
   styleInput: {
-    marginRight: 20,
     width: 200
   }
 }
