@@ -21,9 +21,17 @@ export default class App extends Component {
   constructor() {
     super();
     this.handleChange = this.handleChange.bind(this)
+    this.changeStyle = this.changeStyle.bind(this)
     this.state = {
-      input: ''
+      input: '',
+      markdownStyles: defaultMarkdownStyles
     }
+  }
+
+  changeStyle(event) {
+    this.setState({
+      style: JSON.parse(event.target.value)
+    })
   }
 
   handleChange(event) {
@@ -33,20 +41,45 @@ export default class App extends Component {
   }
 
   render() {
-    const { input } = this.state
+    const { input, markdownStyles } = this.state
     return (
       <View style={styles.container}>
-        <textarea value={input} style={styles.input} onChange={this.handleChange} />
+        <textarea
+          value={input}
+          style={styles.input}
+          onChange={this.handleChange} />
         <Markdown markdownStyles={markdownStyles}>
           {input}
         </Markdown>
-
+        <textarea
+          value={prettify(markdownStyles)}
+          onChange={this.changeStyle}
+          style={styles.styleInput} />
       </View>
     );
   }
 }
 
-const markdownStyles = {}
+function prettify (obj) {
+  return JSON.stringify(obj, null, 2)
+}
+
+const defaultMarkdownStyles = {
+  heading1: {
+    fontSize: 24,
+    color: 'purple',
+  },
+  link: {
+    color: 'darkblue',
+  },
+  mail_to: {
+    color: 'orange',
+  },
+  text: {
+    color: '#757575',
+    fontStyle: 'italic'
+  }
+}
 
 const styles = {
   container: {
@@ -66,21 +99,8 @@ const styles = {
     flex: 1,
     marginRight: 20
   },
-  logo: {
-    alignSelf: 'center',
-    marginBottom: 10
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5
-  },
-  touchable: {
-    backgroundColor: '#CAE6FE'
+  styleInput: {
+    marginRight: 20,
+    width: 300
   }
 }

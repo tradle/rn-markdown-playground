@@ -22356,10 +22356,18 @@
 	function App(){_classCallCheck(this,App);var _this=_possibleConstructorReturn(this,(App.__proto__||Object.getPrototypeOf(App)).call(this));
 
 	_this.handleChange=_this.handleChange.bind(_this);
+	_this.changeStyle=_this.changeStyle.bind(_this);
 	_this.state={
-	input:''};return _this;
+	input:'',
+	markdownStyles:defaultMarkdownStyles};return _this;
 
-	}_createClass(App,[{key:'handleChange',value:function handleChange(
+	}_createClass(App,[{key:'changeStyle',value:function changeStyle(
+
+	event){
+	this.setState({
+	style:JSON.parse(event.target.value)});
+
+	}},{key:'handleChange',value:function handleChange(
 
 	event){
 	this.setState({
@@ -22367,21 +22375,46 @@
 
 	}},{key:'render',value:function render()
 
-	{var
-	input=this.state.input;
+	{var _state=
+	this.state,input=_state.input,markdownStyles=_state.markdownStyles;
 	return(
 	_react2.default.createElement(_reactNative.View,{style:styles.container},
-	_react2.default.createElement('textarea',{value:input,style:styles.input,onChange:this.handleChange}),
+	_react2.default.createElement('textarea',{
+	value:input,
+	style:styles.input,
+	onChange:this.handleChange}),
 	_react2.default.createElement(Markdown,{markdownStyles:markdownStyles},
-	input)));
+	input),
 
-
+	_react2.default.createElement('textarea',{
+	value:prettify(markdownStyles),
+	onChange:this.changeStyle,
+	style:styles.styleInput})));
 
 
 	}}]);return App;}(_react.Component);exports.default=App;
 
 
-	var markdownStyles={};
+	function prettify(obj){
+	return JSON.stringify(obj,null,2);
+	}
+
+	var defaultMarkdownStyles={
+	heading1:{
+	fontSize:24,
+	color:'purple'},
+
+	link:{
+	color:'darkblue'},
+
+	mail_to:{
+	color:'orange'},
+
+	text:{
+	color:'#757575',
+	fontStyle:'italic'}};
+
+
 
 	var styles={
 	container:{
@@ -22401,22 +22434,9 @@
 	flex:1,
 	marginRight:20},
 
-	logo:{
-	alignSelf:'center',
-	marginBottom:10},
-
-	welcome:{
-	fontSize:20,
-	textAlign:'center',
-	margin:10},
-
-	instructions:{
-	textAlign:'center',
-	color:'#333333',
-	marginBottom:5},
-
-	touchable:{
-	backgroundColor:'#CAE6FE'}};
+	styleInput:{
+	marginRight:20,
+	width:300}};
 
 /***/ },
 /* 264 */
