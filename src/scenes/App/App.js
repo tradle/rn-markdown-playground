@@ -16,6 +16,23 @@ import { Touchable } from '../../components';
 import createMarkdownRenderer from 'rn-markdown'
 
 const Markdown = createMarkdownRenderer()
+const defaultInput = ''
+const defaultMarkdownStyles = {
+  heading1: {
+    fontSize: 24,
+    color: 'purple',
+  },
+  link: {
+    color: 'darkblue',
+  },
+  mail_to: {
+    color: 'orange',
+  },
+  text: {
+    color: '#757575',
+    fontStyle: 'italic'
+  }
+}
 
 export default class App extends Component {
   constructor() {
@@ -23,15 +40,17 @@ export default class App extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.changeStyle = this.changeStyle.bind(this)
     this.state = {
-      input: '',
+      input: defaultInput,
       markdownStyles: defaultMarkdownStyles
     }
   }
 
   changeStyle(event) {
-    this.setState({
-      style: JSON.parse(event.target.value)
-    })
+    try {
+      this.setState({
+        markdownStyles: JSON.parse(event.target.value)
+      })
+    } catch (err) {}
   }
 
   handleChange(event) {
@@ -64,23 +83,6 @@ function prettify (obj) {
   return JSON.stringify(obj, null, 2)
 }
 
-const defaultMarkdownStyles = {
-  heading1: {
-    fontSize: 24,
-    color: 'purple',
-  },
-  link: {
-    color: 'darkblue',
-  },
-  mail_to: {
-    color: 'orange',
-  },
-  text: {
-    color: '#757575',
-    fontStyle: 'italic'
-  }
-}
-
 const styles = {
   container: {
     flex: 1,
@@ -101,6 +103,6 @@ const styles = {
   },
   styleInput: {
     marginRight: 20,
-    width: 300
+    width: 200
   }
 }
