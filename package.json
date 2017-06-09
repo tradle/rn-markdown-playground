@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --port 3000 --config web/webpack.config.dev.js --inline --hot --colors --quiet",
-    "dist": "mkdir dist && cp web/src/index.html dist/ && webpack --config web/webpack.config.js",
-    "gh-pages": "npm run dist && ./deploy.sh dist",
+    "dist": "webpack --config web/webpack.config.js",
+    "gh-pages": "./deploy.sh",
     "storybook": "start-storybook -p 9001 -c web/.storybook",
     "lint": "eslint src"
   },
