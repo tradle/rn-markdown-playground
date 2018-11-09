@@ -8,6 +8,7 @@ module.exports = {
   entry: [
     path.join(__dirname, '../index.web.js')
   ],
+  devtool: 'source-map',
   module: {
     loaders: [
       {

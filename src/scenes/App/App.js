@@ -12,7 +12,6 @@ import {
   Image
 } from 'react-native';
 
-import { Touchable } from '../../components';
 import createMarkdownRenderer from 'rn-markdown'
 
 const Markdown = createMarkdownRenderer()
@@ -91,7 +90,8 @@ const styles = {
     flexDirection: 'row'
   },
   input: {
-    width: 400,
+    minWidth: 200,
+    maxWidth: '50%',
     marginRight: 20,
     paddingLeft: 20,
     paddingRight: 20
