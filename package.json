@@ -7,18 +7,16 @@
     "dev": "webpack-dev-server --port 3000 --config web/webpack.config.dev.js --inline --hot --colors --quiet",
     "dist": "webpack --config web/webpack.config.js",
     "gh-pages": "./deploy.sh",
+    "storybook": "start-storybook -p 9001 -c web/.storybook",
     "lint": "eslint src"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "prop-types": "^15.6.2",
-    "react": "^16.3.2",
-    "react-art": "^16.4.0",
-    "react-dom": "^16.3.2",
-    "react-native-web": "^0.8.9",
-    "rn-markdown": "^1.3.0",
+    "react": "15.3.2",
+    "react-native-web": "0.0.49",
+    "rn-markdown": "^1.1.1",
     "url-loader": "0.5.7"
   },
   "devDependencies": {
